@@ -1,5 +1,5 @@
 ```bash
-    git clone https://github.com/ваш-юзернейм/ваш-репозиторий.git
+    git clone https://github.com/diyor-kholmatov/items_management.git
  ```
 
 ```bash
