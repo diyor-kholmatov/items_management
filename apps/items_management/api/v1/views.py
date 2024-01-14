@@ -1,6 +1,7 @@
 from rest_framework import generics
 from apps.items_management.models import ProductName, CategoryItems
 from .serializers import CategoryItemsSerializers, ProductNameSerializers
+from .permissions import IsSuperAdminPermissions
 
 
 class GetCategoryAPIView(generics.ListAPIView):
@@ -9,6 +10,7 @@ class GetCategoryAPIView(generics.ListAPIView):
 
 
 class CreateCategoryAPIView(generics.CreateAPIView):
+    permission_classes = IsSuperAdminPermissions
     queryset = CategoryItems.objects.all()
     serializer_class = CategoryItemsSerializers
 
@@ -19,11 +21,13 @@ class CategoryDetailAPIView(generics.RetrieveAPIView):
 
 
 class CategoryUpdateAPIView(generics.UpdateAPIView):
+    permission_classes = IsSuperAdminPermissions
     queryset = CategoryItems.objects.all()
     serializer_class = CategoryItemsSerializers
 
 
 class CategoryDeleteAPIView(generics.DestroyAPIView):
+    permission_classes = IsSuperAdminPermissions
     queryset = CategoryItems.objects.all()
     serializer_class = CategoryItemsSerializers
 
@@ -34,6 +38,7 @@ class GetProductAPIView(generics.ListAPIView):
 
 
 class CreateProductAPIView(generics.CreateAPIView):
+    permission_classes = IsSuperAdminPermissions
     queryset = ProductName.objects.all()
     serializer_class = ProductNameSerializers
 
@@ -44,11 +49,13 @@ class ProductDetailAPIView(generics.RetrieveAPIView):
 
 
 class ProductUpdateAPIView(generics.UpdateAPIView):
+    permission_classes = IsSuperAdminPermissions
     queryset = ProductName.objects.all()
     serializer_class = ProductNameSerializers
 
 
 class ProductDeleteAPIView(generics.DestroyAPIView):
+    permission_classes = IsSuperAdminPermissions
     queryset = ProductName.objects.all()
     serializer_class = ProductNameSerializers
 
@@ -59,5 +66,3 @@ class ProductsByCategoryAPIView(generics.ListAPIView):
     def get_queryset(self):
         category_id = self.request.query_params.get('category_id')
         return ProductName.objects.filter(category_id=category_id)
-
-
