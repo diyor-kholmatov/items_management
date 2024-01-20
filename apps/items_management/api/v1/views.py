@@ -12,57 +12,61 @@ class GetCategoryAPIView(generics.ListAPIView):
 
 
 class CreateCategoryAPIView(generics.CreateAPIView):
-    permission_classes = [IsSuperAdminPermissions, ]
+    permission_classes = [IsAuthenticated, ]
     queryset = CategoryItems.objects.all()
     serializer_class = CategoryItemsSerializers
 
 
 class CategoryDetailAPIView(generics.RetrieveAPIView):
+    permission_classes = [IsAuthenticated, ]
     queryset = CategoryItems.objects.all()
     serializer_class = CategoryItemsSerializers
 
 
 class CategoryUpdateAPIView(generics.UpdateAPIView):
-    permission_classes = [IsSuperAdminPermissions, ]
+    permission_classes = [IsAuthenticated, ]
     queryset = CategoryItems.objects.all()
     serializer_class = CategoryItemsSerializers
 
 
 class CategoryDeleteAPIView(generics.DestroyAPIView):
-    permission_classes = [IsSuperAdminPermissions, ]
+    permission_classes = [IsAuthenticated, ]
     queryset = CategoryItems.objects.all()
     serializer_class = CategoryItemsSerializers
 
 
 class GetProductAPIView(generics.ListAPIView):
+    permission_classes = [IsAuthenticated, ]
     queryset = ProductName.objects.all().order_by('id')
     serializer_class = ProductNameSerializers
 
 
 class CreateProductAPIView(generics.CreateAPIView):
-    permission_classes = [IsSuperAdminPermissions, ]
+    permission_classes = [IsAuthenticated, ]
     queryset = ProductName.objects.all()
     serializer_class = ProductNameSerializers
 
 
 class ProductDetailAPIView(generics.RetrieveAPIView):
+    permission_classes = [IsAuthenticated, ]
     queryset = ProductName.objects.all()
     serializer_class = ProductNameSerializers
 
 
 class ProductUpdateAPIView(generics.UpdateAPIView):
-    permission_classes = [IsSuperAdminPermissions, ]
+    permission_classes = [IsAuthenticated, ]
     queryset = ProductName.objects.all()
     serializer_class = ProductNameSerializers
 
 
 class ProductDeleteAPIView(generics.DestroyAPIView):
-    permission_classes = [IsSuperAdminPermissions, ]
+    permission_classes = [IsAuthenticated, ]
     queryset = ProductName.objects.all()
     serializer_class = ProductNameSerializers
 
 
 class ProductsByCategoryAPIView(generics.ListAPIView):
+    permission_classes = [IsAuthenticated, ]
     serializer_class = ProductNameSerializers
 
     def get_queryset(self):
