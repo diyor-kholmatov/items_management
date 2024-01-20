@@ -2,15 +2,17 @@ from rest_framework import generics
 from apps.items_management.models import ProductName, CategoryItems
 from .serializers import CategoryItemsSerializers, ProductNameSerializers
 from .permissions import IsSuperAdminPermissions
+from rest_framework.permissions import IsAuthenticated
 
 
 class GetCategoryAPIView(generics.ListAPIView):
+    permission_classes = [IsAuthenticated, ]
     queryset = CategoryItems.objects.all().order_by('id')
     serializer_class = CategoryItemsSerializers
 
 
 class CreateCategoryAPIView(generics.CreateAPIView):
-    permission_classes = IsSuperAdminPermissions
+    permission_classes = [IsSuperAdminPermissions, ]
     queryset = CategoryItems.objects.all()
     serializer_class = CategoryItemsSerializers
 
@@ -21,13 +23,13 @@ class CategoryDetailAPIView(generics.RetrieveAPIView):
 
 
 class CategoryUpdateAPIView(generics.UpdateAPIView):
-    permission_classes = IsSuperAdminPermissions
+    permission_classes = [IsSuperAdminPermissions, ]
     queryset = CategoryItems.objects.all()
     serializer_class = CategoryItemsSerializers
 
 
 class CategoryDeleteAPIView(generics.DestroyAPIView):
-    permission_classes = IsSuperAdminPermissions
+    permission_classes = [IsSuperAdminPermissions, ]
     queryset = CategoryItems.objects.all()
     serializer_class = CategoryItemsSerializers
 
@@ -38,7 +40,7 @@ class GetProductAPIView(generics.ListAPIView):
 
 
 class CreateProductAPIView(generics.CreateAPIView):
-    permission_classes = IsSuperAdminPermissions
+    permission_classes = [IsSuperAdminPermissions, ]
     queryset = ProductName.objects.all()
     serializer_class = ProductNameSerializers
 
@@ -49,13 +51,13 @@ class ProductDetailAPIView(generics.RetrieveAPIView):
 
 
 class ProductUpdateAPIView(generics.UpdateAPIView):
-    permission_classes = IsSuperAdminPermissions
+    permission_classes = [IsSuperAdminPermissions, ]
     queryset = ProductName.objects.all()
     serializer_class = ProductNameSerializers
 
 
 class ProductDeleteAPIView(generics.DestroyAPIView):
-    permission_classes = IsSuperAdminPermissions
+    permission_classes = [IsSuperAdminPermissions, ]
     queryset = ProductName.objects.all()
     serializer_class = ProductNameSerializers
 
